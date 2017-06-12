@@ -15,21 +15,21 @@ show ?
   <button className="btn" type="submit">{value}</button>
 </center> : false
 
-const Input = ({ index, name, placeholder, onChange }) => <input type="text" data-index={index} name={name} placeholder={placeholder} onChange={onChange} />;
+const Input = ({ index, name, value, onChange }) => <input type="text" data-index={index} name={name} value={value} onChange={onChange} />;
 
-const Card = ({ show, onChange }) =>
+const Card = ({ show, dataCard, onChange }) =>
 show ?
   <div className="card center">
     <div className="icon fright">VISA</div>
     <label>Номер карты:</label>
-    <Input name="pan" placeholder="4111111111111111" onChange={onChange} />
+    <Input name="pan" value={dataCard[0]} onChange={onChange} />
     <div className="inline">
       <label>Срок действия:</label>
-      <Input name="expire" placeholder="10/17" onChange={onChange} />
+      <Input name="expire" value={dataCard[1]} onChange={onChange} />
     </div>
     <div className="inline">
       <label>CVC/CVV:<span className="icon fright">?</span></label>
-      <Input name="cvv" placeholder="123" onChange={onChange} />
+      <Input name="cvv" value={dataCard[2]} onChange={onChange} />
     </div>
   </div> : false
 
@@ -79,7 +79,7 @@ export default class App extends Component {
     super(props);
     this.state = {
       data: initialData,
-      dataCard: [],
+      dataCard: ["411111111111","10/17","123"],
       activeTab: 1,
       method: "set",
       showCard: false,
@@ -118,7 +118,9 @@ export default class App extends Component {
 
   handleSubmitRequest(e) {
     e.preventDefault();
-    const isTrue = this.state.dataCard.length < 3;
+    const isTrue = this.state.dataCard.some (
+      el => !el.length
+    )
     this.setState({showCard: isTrue, showRequest: !isTrue});
 
   }
@@ -138,7 +140,7 @@ export default class App extends Component {
 
   render() {
     const Fields = this.state.data.map (
-        (el,index) => <div><label>{el.label}</label><Input index={index} name={el.id} placeholder={el.value} onChange={this.handleChange} /></div>
+        (el,index) => <div><label>{el.label}</label><Input index={index} name={el.id} value={el.value} onChange={this.handleChange} /></div>
     );
     return (
       <form name="frame" method="post" className="frames" onSubmit={this.state.showCard ? this.handleSubmitRequest : this.handleSubmit}>
@@ -150,7 +152,7 @@ export default class App extends Component {
           <Snippet method={this.state.method} data={this.state.data} onClick={this.handleCopyClick} />
         </div>
         <div>
-          <Card show={this.state.showCard} onChange={this.handleChange} />
+          <Card show={this.state.showCard} onChange={this.handleChange} dataCard={this.state.dataCard} />
         </div>
         <Loader show={this.state.showRequest} pan={this.state.dataCard[0]} expire={this.state.dataCard[1]} cvv={this.state.dataCard[2]} />
         <ButtonSubmit value={this.state.showCard ? "Оплатить" : "Вызвать фрейм"} show={!this.state.showRequest} />

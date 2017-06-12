@@ -5,4 +5,5 @@ A React-based doc page for payment service API
 git clone https://github.com/magalliance/paymo.git
 
 ### Launch
-npm start
+1. npm start
+2. url: http://localhost:8080/

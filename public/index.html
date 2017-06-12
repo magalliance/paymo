@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>Способы интеграции</title>
+		<link rel="stylesheet" href="style.css" />
+	</head>
+	<body>
+		<aside>
+			<img src="logo.png" alt="Paymo" class="logo" />
+			<nav>
+				<ul class="menu">
+					<li><a href="#">С чего начать?</a></li>
+					<li><a href="#">Способы интеграции</a>
+						<ul class="submenu">
+							<li><a href="#h1">ПЛАТЕЖНЫЙ ВИДЖЕТ</a></li>
+							<li><a href="#h2">Типы платежного фрейма</a></li>
+							<li><a href="#h3">Используемые параметры</a></li>
+							<li><a href="#h4">Вызов фрейма</a></li>
+							<li><a href="#h5">Тестовые карты</a></li>
+							<li><a href="#h6">ПЛАТЕЖНАЯ СТРАНИЦА</a></li>
+						</ul>
+					</li>
+					<li><a href="#">Метод получения статуса операции</a></li>
+					<li><a href="#">Выставление счетов по SMS и E-mail</a></li>
+					<li><a href="#">Данные для тестирования</a></li>
+					<li><a href="#">Рекуррентные платежи</a></li>
+					<li><a href="#">Дополнительные параметры платежа (Extra)</a></li>
+					<li><a href="#">Start и Finish CallBack</a></li>
+				</ul>
+			</nav>
+		</aside>
+		<main>
+			<input type="text" name="search" placeholder="Поиск по документации" />
+			<ul class="breadcrumbs">
+				<li><a href="#">Документация</a></li>
+				<li><a href="#">Подключение платежного виджета</a></li>
+			</ul>
+			<header>
+				<h1>Подключение<br />платежного виджета</h1>
+			</header>
+			<article>
+				<a name="h2"></a><h2>Типы платежного фрейма</h2>
+				<p>Существует два метода платежного виджета: встроенный в страницу (<span class="highlight">set</span>) и всплывающий (<span class="highlight">open</span>). При использованиее всплывающего виджета, он будет отображаться по центру экрана, тогда как при использовании втроенного в страницу виджета, его добавление будет произведено в тот элемент, который передается в параметре <span class="highlight">parent_id</span>.</p>
+				<a name="h3"></a><h2>Используемые параметры</h2>
+				<table border="0" cellpadding="0" cellspacing="0">
+					<tbody>
+						<tr>
+							<td>parent_id*</td>
+							<td>Элемент, в который будет произведено добавление iframe.</td>
+						</tr>
+						<tr>
+							<td>api_key*</td>
+							<td>Ключ терминала, через который проводится подключение к серверу.</td>
+						</tr>
+						<tr>
+							<td>tx_id*</td>
+							<td>Номер транзакции в магазине. Может быть любым набором символов. Должен быть уникален в пределах выбранного терминала.</td>
+						</tr>
+						<tr>
+							<td>description</td>
+							<td>Назначение (описание) платежа.</td>
+						</tr>
+						<tr>
+							<td>amount*</td>
+							<td>Сумма платежа в копейках.</td>
+						</tr>
+						<tr>
+							<td>signature</td>
+							<td>Формирование подписи: md5("amount"+"crypto_key").</td>
+						</tr>
+						<tr>
+							<td>success_redirect</td>
+							<td>URL для возврата при успешном платеже.</td>
+						</tr>
+						<tr>
+							<td>fail_redirect</td>
+							<td>URL для возврата при неуспешном платеже (fail и success URL могут быть одинаковыми).</td>
+						</tr>
+						<tr>
+							<td>rebill</td>
+							<td>При использовании <a href="#">рекуррентных платежей</a></td>
+						</tr>
+						<tr>
+							<td>extra</td>
+							<td><a href="#">Дополнительные параметры</a> платежа</td>
+						</tr>
+						<tr>
+							<td>version</td>
+							<td>Версия платежного виджета. Доступны две версии: 1.0.0 и 2.0.0</td>
+						</tr>
+					</tbody>
+				</table>
+				<small>* Обязательные параметры</small>
+				<a name="h4"></a><h2>Вызов фрейма</h2>
+				<p>Выберите тип фрейма, заполните желаемые параметры и нажмите кнопку Вызвать фрейм для просмотра демо-фрейма. Пожалуйста, используйте <a href="#">тестовые карты</a> для совершения демо платежа.</p>
+				<div id="app"></div>
+				<a name="h5"></a><h2>Тестовые карты</h2>
+				<p>Для совершения тестового платежа можно использовать следующий данные карт:</p>
+				<div class="cards">
+					<div class="inline">
+						<p><strong>С 3D Secure:</strong></p>
+						<div class="card inline">
+							<div class="icon fright">VISA</div>
+							<label>Номер карты:</label>
+							<input name="pan" type="text" placeholder="4111 1111 1111 1111" />
+							<div class="inline">
+								<label>Срок действия:</label>
+								<input name="expire" type="text" placeholder="10/17" />
+							</div>
+							<div class="inline">
+								<label>CVC/CVV:<span class="icon fright">?</span></label>
+								<input name="cvv" type="text" placeholder="123" />
+							</div>
+						</div>
+					</div>
+					<div class="inline">
+						<p class="inline"><strong>Без 3D Secure:</strong></p>
+						<div class="card">
+							<div class="icon fright">VISA</div>
+							<label>Номер карты:</label>
+							<input name="pan" type="text" placeholder="4111 1111 1111 1111" />
+							<div class="inline">
+								<label>Срок действия:</label>
+								<input name="expire" type="text" placeholder="10/17" />
+							</div>
+							<div class="inline">
+								<label>CVC/CVV:<span class="icon fright">?</span></label>
+								<input name="cvv" type="text" placeholder="123" />
+							</div>
+						</div>
+					</div>
+				</div>
+				<p>3D Secure: <strong>12345678</strong></p>
+				<p class="biglink">
+					<a href="#">Платежная страница &rsaquo;</a>
+				</p>
+				<h2>Как с нами связаться</h2>
+				<p>
+					Если у вас есть вопросы и вы не нашли на них ответы в документации,<br />
+					пишите на <a href="mailto:support@paymo.ru">support@paymo.ru</a> или звоните по номеру <strong>+7 (495) 369-60-67</strong>.
+				</p>
+			</article>
+		</main>
+	</body>
+</html>
+<script src="/js/bundle.js"></script>
+</body>
+</html>

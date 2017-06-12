@@ -1,0 +1,302 @@
+body {
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 1rem;
+	color: #2C3549;
+	margin: 0;
+	padding: 0;
+	background-color: #F4F6F9;
+}
+
+h2,
+h3 {
+	font-weight: normal;
+	margin: 2rem 0 1rem;
+}
+
+header {
+	clear: both;
+}
+
+aside,
+main {
+	display: inline-block;
+	vertical-align: top;
+}
+
+aside {
+	padding: 3rem 6rem;
+	width: 20%;
+}
+
+input,
+label {
+	display: block;
+}
+
+input[name="search"] {
+	border: none;
+	border-bottom: 2px solid #F2F6FE;
+	width: 100%;
+	color: #B0BEC5;
+	padding: 1rem;
+	font-size: 1rem;
+}
+
+input[name="pan"] {
+	font-size: 1.5rem;
+	margin-bottom: 2rem;
+}
+
+input[name="expire"],
+input[name="cvv"] {
+	font-size: .9rem;
+}
+
+input.error {
+	background-color: #FFABAB;
+}
+
+form > div {
+	margin-bottom: 2rem;
+}
+
+form .btn,
+.card {
+	background-color: #00ACC1;
+	color: #FFFFFF;
+	border-radius: 10px;
+	box-shadow: 0 0 5px gray;
+}
+
+form .tab {
+	border-radius: 10px;
+	box-shadow: 0 0 5px gray;
+}
+
+form .tab:first-of-type {
+	margin-right: 1rem;
+}
+
+form .active{
+	background-color: #00ACC1;
+	color: #FFFFFF;
+	box-shadow: none;
+}
+
+form .btn,
+form .tab {
+	padding: 1rem;
+	text-transform: uppercase;
+	width: 200px;
+	border: none;
+	font-size: 1rem;
+}
+
+main {
+	width: 60%;
+	background-color: #FEFEFE;
+	box-shadow: 0 0 5px gray;
+	padding: 1rem 3rem;
+}
+
+main a,
+.highlight,
+table td:first-of-type {
+	color: #00ACC1;
+}
+
+nav a,
+.breadcrumbs a {
+	text-decoration: none;
+}
+
+nav a {
+	color: #2C3549;
+}
+
+small {
+	color: #868EA2;
+}
+
+.icon-copy {
+	color: #04ADC2;
+	padding: .2rem;
+	border: 1px solid #04ADC2;
+	border-radius: .3rem;
+}
+
+.icon-copy:hover {
+	color: #FFFFFF;
+	background-color: #04ADC2;
+	cursor: pointer;
+}
+
+.logo {
+	width: 200px;
+	margin-bottom: 4rem;
+}
+
+.menu,
+.submenu,
+.breadcrumbs {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+.biglink {
+	color: #2C3549;
+	font-weight: bold;
+	padding: 2rem 0;
+	border-bottom: 2px solid #F2F6FE;
+}
+
+.biglink a {
+	text-decoration: none;
+}
+
+.breadcrumbs {
+	margin: 2rem 0;
+}
+
+.breadcrumbs li a {
+	color: #B0BEC5;
+	font-size: .9rem;
+}
+
+.breadcrumbs li{
+	display: inline-block;
+}
+
+.breadcrumbs li:last-of-type a {
+	color: #2C3549;
+}
+
+.breadcrumbs li:not(:last-of-type )::after {
+	content: "\203a";
+	margin: 0 .5rem;
+}
+
+.btn:hover,
+.tab:hover {
+	cursor: pointer;
+}
+
+.cards > div:first-of-type {
+	margin-right: 5rem;
+}
+
+.card {
+	padding: 3rem 2rem 0;
+	width: 300px;
+	height: 172px;
+}
+
+.card label {
+	font-size: .8rem;
+	margin-bottom: .3rem;
+}
+
+.card input {
+	width: 100%;
+	border: none;
+	border-bottom: 1px solid #FFFFFF;
+	background-color: transparent;
+	color: #FFFFFF;
+}
+
+.card input::placeholder {
+	color: #FFFFFF;
+}
+
+.card div:not(:first-of-type) {
+	width: 31%;
+	padding-right: 1rem;
+}
+
+.highlight,
+table td:first-of-type {
+	font-weight: bold;
+}
+
+.inline {
+	display: inline-block;
+}
+
+.fields,
+.code {
+	width: 400px;
+	min-height: 474px;
+	vertical-align: top;
+}
+
+.code {
+	background-color: #F3F5F8;
+	padding: 1rem;
+	margin-top: 2.5rem;
+	border-radius: .5rem;
+}
+
+.code pre,
+.code code {
+	font-size: .9rem;
+}
+
+.fields input[type="text"]{
+	width: 300px;
+	height: 2rem;
+	line-height: 2rem;
+	padding: 0 1rem;
+	border: 1px solid #D9DFE0;
+	border-radius: .4rem;
+}
+
+.fields label {
+	margin: 1rem 0 .5rem;
+}
+
+table tr {
+	line-height: 3rem;
+	vertical-align: middle;
+}
+
+table td {
+	padding-left: 1rem;
+}
+
+table tr:nth-of-type(even) {
+	background-color: #F5F8FE;
+}
+
+.menu li {
+	font-weight:bold;
+	margin-bottom: 1rem;
+}
+
+.menu li li {
+	font-weight:normal;
+}
+
+.center {
+	margin: 0 auto;
+}
+
+.fleft {
+	float: left;
+}
+
+.fright {
+	float: right;
+}
+
+.tabspace-1 {
+	padding-left: 2rem;
+}
+
+.tabspace-2 {
+	padding-left: 4rem;
+}
+
+.submenu {
+	margin: 1rem 0 1.5rem 0;
+}

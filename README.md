@@ -1,8 +1,8 @@
 # paymo
 A React-based doc page for payment service API
 
-###Install
+### Install
 git clone https://github.com/magalliance/paymo.git
 
-###Launch
+### Launch
 npm start

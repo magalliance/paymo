@@ -74,6 +74,14 @@ const Loader = ({show, pan, expire, cvv}) => show ?
     </center>
   </div> : false
 
+const Result = ({show, pan, expire, cvv}) => show ?
+  <div className="result">
+    <h3 className="highlight">Оплата успешно проведена</h3>
+    <p><strong>Номер карты:</strong> {pan}</p>
+    <p><strong>Срок действия:</strong> {expire}</p>
+    <p><strong>CVV:</strong> {cvv}</p>
+  </div> : false
+
 export default class App extends Component {
   constructor(props) {
     super(props);
@@ -83,7 +91,8 @@ export default class App extends Component {
       activeTab: 1,
       method: "set",
       showCard: false,
-      showRequest: false
+      showRequest: false,
+      showResult: false
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -123,6 +132,24 @@ export default class App extends Component {
     )
     this.setState({showCard: isTrue, showRequest: !isTrue});
 
+    const requestObject = JSON.stringify({
+      api_key: this.state.data[0].value,
+      tx_id: this.state.data[1].value,
+      description: this.state.data[2].value,
+      amount: this.state.data[3].value,
+      signature: this.state.data[6].value,
+      success_redirect: this.state.data[4].value,
+      fail_redirect: this.state.data[5].value,
+      pan: this.state.dataCard[0],
+      expire: this.state.dataCard[1],
+      cvv: this.state.dataCard[2]
+    });
+
+    console.log(requestObject);
+
+    setTimeout(() => {
+        this.setState({showRequest: false, showResult: true});
+      }, 3000);
   }
 
   handleTabClick(e) {
@@ -135,7 +162,8 @@ export default class App extends Component {
   }
 
   handleCopyClick() {
-    alert("handleCopyClick")
+    let codeText = document.getElementsByTagName('code')[0].textContent.replace(/‹/g,"<").replace(/›/g,">");
+    alert(codeText);
   }
 
   render() {
@@ -155,7 +183,8 @@ export default class App extends Component {
           <Card show={this.state.showCard} onChange={this.handleChange} dataCard={this.state.dataCard} />
         </div>
         <Loader show={this.state.showRequest} pan={this.state.dataCard[0]} expire={this.state.dataCard[1]} cvv={this.state.dataCard[2]} />
-        <ButtonSubmit value={this.state.showCard ? "Оплатить" : "Вызвать фрейм"} show={!this.state.showRequest} />
+        <Result show={this.state.showResult} pan={this.state.dataCard[0]} expire={this.state.dataCard[1]} cvv={this.state.dataCard[2]} />
+        <ButtonSubmit value={this.state.showCard ? "Оплатить" : "Вызвать фрейм"} show={this.state.showResult ? this.state.showRequest: !this.state.showRequest} />
       </form>
     );
   }
